@@ -13,13 +13,13 @@ import static org.mockito.Mockito.*;
 
 
 
-public interface IAnimalTest {
+public class IAnimalTest {
 
     @Mock
-     IAnimal animal = null;
+    private static IAnimal animal = null;
 
     @Before
-    static IAnimal gettestvalues(){
+    public static IAnimal gettestvalues(){
 
         IAnimal animal = mock(IAnimal.class);
         when(animal.getXP()).thenReturn(100);
@@ -29,7 +29,7 @@ public interface IAnimalTest {
         return animal;
     }
     @Before
-    default void init(){
+    public void init(){
         animal = gettestvalues();
     }
 

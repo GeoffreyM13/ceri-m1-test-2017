@@ -14,22 +14,23 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 
-public interface IEnvironmentProviderTest {
+public class IEnvironmentProviderTest {
 
     @Mock
-    IEnvironmentProvider environmentProvider = null;
+    private IEnvironmentProvider environmentProvider;
 
     @Mock
+    static
     IEnvironment environment = null;
 
-    List<String> environments = Arrays.asList("Moutains","Outback");
+    static List<String> environments = Arrays.asList("Moutains","Outback");
 
     static IEnvironmentProvider gettestvalues() {
 
         IEnvironmentProvider environmentProvider = mock(IEnvironmentProvider.class);
         environment = IEnvironmentTest.gettestvalues();
 
-        when(environmentProvider.getEnvironment(null)).thenReturn(new IllegalArgumentException());
+        when(environmentProvider.getEnvironment(null)).thenReturn((IEnvironment) new IllegalArgumentException());
         when(environmentProvider.getEnvironment("empty")).thenReturn(null);
         when(environmentProvider.getEnvironment("Moutains")).thenReturn(environment);
         when(environmentProvider.getAvailableEnvironments()).thenReturn(environments);
@@ -38,7 +39,7 @@ public interface IEnvironmentProviderTest {
     }
 
     @Before
-    static void init() {
+    public void init() {
         IEnvironmentProvider environmentProvider = gettestvalues();
     }
 
