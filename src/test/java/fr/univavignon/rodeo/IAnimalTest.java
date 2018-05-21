@@ -3,6 +3,7 @@ package fr.univavignon.rodeo;
 
 
 import fr.univavignon.rodeo.api.IAnimal;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -15,10 +16,10 @@ import static org.mockito.Mockito.*;
 public interface IAnimalTest {
 
     @Mock
-    IAnimal animal = null;
+     IAnimal animal = null;
 
     @Before
-    static IAnimal Mock(){
+    static IAnimal gettestvalues(){
 
         IAnimal animal = mock(IAnimal.class);
         when(animal.getXP()).thenReturn(100);
@@ -29,29 +30,29 @@ public interface IAnimalTest {
     }
     @Before
     default void init(){
-        animal = Mock();
+        animal = gettestvalues();
     }
 
     @Test
     static void testgetXP(){
-        assertEquals (0, animal.getXP());
+        assertEquals (100, animal.getXP());
 
     }
 
     @Test
     static void testIsBoss(){
-        assertEquals ( animal.isBoss()));
+        assertTrue( animal.isBoss());
     }
 
 
     @Test
     static void testIsSecret(){
-        assertEquals ( animal.isSecret());
+        assertTrue( animal.isSecret());
     }
 
     @Test
     static void testIsEndangered(){
-        assertEquals ( animal.isEndangered()));
+        assertTrue( animal.isEndangered());
     }
 
 
